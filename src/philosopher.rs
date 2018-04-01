@@ -1,3 +1,6 @@
+
+use rand::{thread_rng, Rng};
+
 use std::thread;
 use std::time::Duration;
 
@@ -20,12 +23,19 @@ impl Philosopher {
 
    pub fn eat(&self, table: &Table) {
         let _left = table.forks[self.left].lock().unwrap();
-        thread::sleep(Duration::from_millis(150));
+        
+        let taking_time = thread_rng().gen_range(1, 150);
+        
+        println!("{} is taking. {} ms.", self.name, taking_time);
+        
+        thread::sleep(Duration::from_millis(taking_time));
         let _right = table.forks[self.right].lock().unwrap();
 
-        println!("{} is eating.", self.name);
+        let eating_time = thread_rng().gen_range(1, 1000);
+        
+        println!("{} is start eating. {} ms.", self.name, eating_time);
 
-        thread::sleep(Duration::from_millis(1000));
+        thread::sleep(Duration::from_millis(eating_time));
 
         println!("{} is done eating.", self.name);
     }

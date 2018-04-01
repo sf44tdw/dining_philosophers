@@ -1,3 +1,5 @@
+extern crate rand;
+
 use std::thread;
 use std::sync::{Mutex, Arc};
 

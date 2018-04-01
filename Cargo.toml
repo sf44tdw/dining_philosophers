@@ -7,3 +7,7 @@ authors = [ "Your name <you@example.com>" ]
 [[bin]]
 
 name = "dining_philosophers"
+
+[dependencies]
+
+rand="0.3.0"
