@@ -22,16 +22,16 @@ impl Philosopher {
     }
 
    pub fn eat(&self, table: &Table) {
-        let _left = table.forks[self.left].lock().unwrap();
+        let _left: std::sync::MutexGuard<'_, ()> = table.forks[self.left].lock().unwrap();
 
-        let taking_time = thread_rng().gen_range(1, 150);
+        let taking_time: u64 = thread_rng().gen_range(1, 150);
 
         println!("{} is taking. {} ms.", self.name, taking_time);
 
         thread::sleep(Duration::from_millis(taking_time));
-        let _right = table.forks[self.right].lock().unwrap();
+        let _right: std::sync::MutexGuard<'_, ()> = table.forks[self.right].lock().unwrap();
 
-        let eating_time = thread_rng().gen_range(1, 1000);
+        let eating_time: u64 = thread_rng().gen_range(1, 1000);
 
         println!("{} is start eating. {} ms.", self.name, eating_time);
 
