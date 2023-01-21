@@ -3,3 +3,4 @@
 *.log
 ./vscode
 *.json
+cargo.lock
